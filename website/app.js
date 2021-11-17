@@ -1,10 +1,10 @@
 /* Global Variables */
 const openWeatherApiKey = "&appid=51870b10cdab5101e13f806b0258b6fc";
-const openWeatherBaseURL = "http://api.openweathermap.org/data/2.5/weather";
+const openWeatherBaseURL = "http://api.openweathermap.org/data/2.5/weather?units=metric";
 
 const getWeatherAPIData = async (zipCode) => {
     const res = await fetch(
-        openWeatherBaseURL + "?zip=" + zipCode + openWeatherApiKey,
+        openWeatherBaseURL + "&zip=" + zipCode + openWeatherApiKey,
         {
             method: "GET",
             mode: 'cors'
@@ -58,7 +58,7 @@ generateBtn.addEventListener("click", function (ev) {
     const zipCode = document.getElementById("zip").value;
     const ress = getWeatherAPIData(zipCode).then((weatherData) => {
         newEntry = {
-            temperature: weatherData.main.temp - 273, // for degree celcius
+            temperature: weatherData.main.temp, // for degree celcius
             date: getCurrDate(),
             userResponse: document.getElementById("feelings").value
         };
